@@ -31,7 +31,7 @@ import org.openjdk.jol.vm.VM;
  *
  * @author Aleksey Shipilev
  */
-abstract class GraphPathRecord {
+public abstract class GraphPathRecord {
     protected final GraphPathRecord parent;
     private final int depth;
     private final Object obj;
@@ -43,17 +43,17 @@ abstract class GraphPathRecord {
         this.depth = depth;
     }
 
-    final Object obj() {
+    public final Object obj() {
         return obj;
     }
 
     abstract String path();
 
-    final Class<?> klass() {
+    public final Class<?> klass() {
         return obj.getClass();
     }
 
-    final long size() {
+    public final long size() {
         if (size == 0) {
             // Object size would not change, fine to compute lazily.
             size = VM.current().sizeOf(obj);
@@ -61,11 +61,11 @@ abstract class GraphPathRecord {
         return size;
     }
 
-    final void setSize(long size) {
+    public final void setSize(long size) {
         this.size = size;
     }
 
-    final int depth() {
+    public final int depth() {
         return depth;
     }
 
